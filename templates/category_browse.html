@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ category.title }}{% endblock %}
+
+{% block page_content %}
+    <div id="algorithms">
+        Algorithms in this category: <br />
+        <ul>
+            {% for algorithm in algorithms %}
+                <li>
+                    <a href="/algorithms/{{ algorithm.id }}/">
+                        {{ algorithm.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="structures">
+        Data Structures in this category: <br />
+        <ul>
+            {% for structure in structures %}
+                <li>
+                    <a href="/structures/{{ structure.id }}/">
+                        {{ structure.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

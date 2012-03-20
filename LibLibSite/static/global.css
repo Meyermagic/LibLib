@@ -1,0 +1,29 @@
+body {
+    font-family:"helvetica","arial",sans-serif;
+}
+#site_header {
+    background-color: #d3d3d3;
+}
+
+#site_nav_container {
+    display: span;
+    width: 50%;
+    float: left;
+}
+
+#site_logo {
+    display: span;
+    float: left;
+}
+
+#site_nav {
+    display: span;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+}
+
+#user_nav {
+    display: span;
+    text-align: right;
+}

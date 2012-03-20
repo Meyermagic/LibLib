@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ algorithm.title }}{% endblock %}
+
+{% block page_content %}
+    <div id="algorithm_container">
+        <div id="algorithm_block">
+            <div id="algorithm_title">
+                <h1>{{ algorithm.title }}</h1>
+            </div>
+            <div id="algorithm_description">
+                {{ algorithm.description }}
+            </div>
+        </div>
+        <div id="implementation_container">
+            This algorithm has the following implementations:
+            <ul>
+                {% for impl in implementations %}
+                    <li>
+                        <span class="impl_block"><a href="{{ impl.id }}/">In {{ impl.language }}</a>, by {{ impl.author }} on {{ impl.created|date:"Y/m/d"}}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

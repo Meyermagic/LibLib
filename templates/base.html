@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}global.css" />
+        {% block css_include %} {% endblock %}
+        {% block js_include %} {% endblock %}
+    </head>
+    <body>
+        <header id="site_header">
+            <div id="site_nav_container">
+                <div id="site_logo">
+                    (LibLib Logo Here)
+                </div>
+                <nav id="site_nav">
+                    <a  href="/create/">create</a>
+                    <a href="/browse/">browse</a>
+                    <a href="/request/">request</a>
+                </nav>
+            </div>
+            <div id="user_nav">
+                {% if not user.is_authenticated %}
+                    <a href="/accounts/login/?next=/">Log in</a>
+                    <a href="/accounts/register/">Register</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <a href="/accounts/profile/">{{ user.username }}</a>
+                    <a href="/accounts/logout/?next=/">Logout</a>
+                {% endif %}
+            </div>
+        </header>
+        <div id="content">
+        {% block page_content %} {% endblock %}
+        </div>
+        <footer id="site_footer">
+        </footer>
+    </body>
+</html>

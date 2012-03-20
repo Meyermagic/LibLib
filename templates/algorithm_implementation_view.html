@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ algorithm.title }}{% endblock %}
+
+{% block css_include %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}highlight.css" />
+{% endblock %}
+
+{% block page_content %}
+    <div id="impl_container">
+        <div id="intro_block">
+            <h1>{{ algorithm.title }}</h1>
+            <h2>By {{ impl.author }}, in {{ impl.language }}</h2>
+            <div id="algorithm_desc">
+                {{ algorithm.description }}
+            </div>
+        </div>
+        <div id="code_block">
+            {{ sourcecode|safe}}
+        </div>
+    </div>
+{% endblock %}

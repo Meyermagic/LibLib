@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block title %}LibLib - The Programming Meta-Library{% endblock %}
+
+{% block page_content %}
+    <div id="site_introduction">
+        <div id="site_explanation">
+            <h3>What is LibLib?</h3>
+            <p>
+                LibLib is a programming "meta-library" site, with the goal of <em>making reusable code more usable</em>.
+                LibLib provides a framework for sharing small, reusable pieces of code, while avoiding the problems associated with many another snippet, recipe, or library sharing sites.
+            </p>
+            <h3>How does it work?</h3>
+            <p>
+                LibLib stores four types of code: algorithms, data structures, test suites, and demonstrations.
+                <strong>Algorithms</strong> operate on some data structure, and produce some output.
+                <strong>Data structures</strong> store information in a way that makes it easy to use for some specific application.
+                <strong>Test suites</strong> verify the correct operation of an algorithm or data structure.
+                Finally, <strong>demonstrations</strong> show how some simple task may be accomplished.
+            </p>
+            <p>
+                As an example, let's take a Polygon object. The core of the library would consist of a <strong>Polygon</strong> data structure.
+                It would implement a few useful method, one of which might be "Point in Polygon".
+                If implemented by a crossing number test, the Point in Polygon method would use another library on LibLib, the algorithm for a <strong>ray-line segment intersection test</strong>.
+                To verify that it works, a <strong>test suite</strong> consisting of some pre-computed simple shapes, along with some random ones, would be linked to the Polygon data structure.
+                Finally, the Polygon data structure would have an associated <strong>demonstration</strong>, showing how it could be used in your own code.
+            </p>
+        </div>
+    </div>
+    <div id="categories_list">
+        <h2>Categories</h2>
+        {% load mptt_tags %}
+        <ul>
+            {% recursetree nodes %}
+                <li>
+                    <a href="category/{{ node.id }}/">{{ node.title }}</a>
+                    {% if not node.is_leaf_node %}
+                        <ul class="children">
+                            {{ children }}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
+        </ul>
+    </div>
+{% endblock %}
