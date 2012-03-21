@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 
-{% block title %}My Profile{% endblock %}
+{% block title %}{{ other_user.username }}'s profile{% endblock %}
 
 {% block page_content %}
     <div id="account_info">
-    <h2>Account Info</h2>
+        <h2>Account info</h2>
         <ul>
             <li>
-                Username: {{ user.username }}
+                Username: {{ other_user.username }}
             </li>
             <li>
-                Email: {{ user.email }}
+                Last Login: {{ other_user.last_login|date:"Y/m/d" }}
             </li>
             <li>
-                Date Joined: {{ user.date_joined|date:"Y/m/d" }}
+                Date Joined: {{ other_user.date_joined|date:"Y/m/d" }}
             </li>
         </ul>
     </div>

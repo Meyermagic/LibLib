@@ -123,6 +123,8 @@ INSTALLED_APPS = (
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
+APPEND_SLASH = True
+
 #TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',

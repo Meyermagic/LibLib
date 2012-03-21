@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from settings import MEDIA_ROOT, MEDIA_URL
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.template import RequestContext
 from models import *
 
@@ -56,3 +57,45 @@ def struct_impl_view(request, structure_id, impl_id):
              'impl' : current_impl,
              'sourcecode' : source
         })
+
+def profile(request):
+    context = RequestContext(request)
+    user = context['user']
+    algorithms = AlgorithmImplementation.objects.filter(author=user.pk)
+    structures = DataStructureImplementation.objects.filter(author=user.pk)
+    return render(request, "profile.html", {
+        'algorithms' : algorithms,
+        'structures' : structures
+    })
+
+def profile_other(request, uname):
+    user = User.objects.get(username=uname)
+    algorithms = AlgorithmImplementation.objects.filter(author=user.pk)
+    structures = DataStructureImplementation.objects.filter(author=user.pk)
+    return render(request, "profile_other.html", {
+        'other_user' : user,
+        'algorithms' : algorithms,
+        'structures' : structures
+    })
+
+def new_algorithm(categories, title, description):
+    algorithm = Algorithm.objects.create(categories=categories, title=title, description=description)
+    algorithm.save()
+    return HttpResponseRedirect(reverse("LibLibSite.views.algorithm_browse", args=[algorithm.id]))
+
+def new_algorithm_impl(algorithm, author, language, code):
+    pass
+
+def new_structure(categories, title, description):
+    structure = DataStructure.objects.create(categories=categories, title=title, description=description)
+    structure.save()
+    return HttpResponseRedirect(reverse("LibLibSite.views.structure_browse", args=[structure.id]))
+
+def new_structure_impl(structure, author, language, code):
+    pass
+
+def handle_create(request):
+    pass
+
+def create_page(request):
+    return render(request, "create.html")

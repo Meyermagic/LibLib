@@ -29,5 +29,5 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/profile/$', 'LibLibSite.views.profile', name='user_profile'),
-    url(r'^accounts/(?P<username>\W+)/$', 'LibLibSite.views.profile_other', name='user_profile_other'),
+    url(r'^accounts/profile/(?P<uname>\w+)/$', 'LibLibSite.views.profile_other', name='user_profile_other'),
 )
